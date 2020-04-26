@@ -9,3 +9,5 @@ class Post(models.Model):
     created = models.DateTimeField()    # 작성 날짜
     author = models.ForeignKey(User, on_delete=models.CASCADE)    # 작성자 ,  on_delete = True : 회원 탈퇴시 django에 연결된 User도 삭제 할 것인지?  3.0 버전에서 True가 아니라 models.CASCADE로 바뀜
 
+    def __str__(self):
+        return '{} :: {}'.format(self.title, self.author)
