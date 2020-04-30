@@ -120,3 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '_media')   # 이미지 업로드
+MEDIA_URL = '/media/'   # 이미지 경로를 설정해주기 위한 부분
