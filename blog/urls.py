@@ -17,5 +17,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    # path('<int:pk>/', views.post_detail),  # post_detail : 소문자로 쓰는 이유는 함수로 이용하겠다는
+    path('<int:pk>/', views.PostDetail.as_view()),
     path('', views.PostList.as_view()),
 ]
