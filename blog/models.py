@@ -15,3 +15,6 @@ class Post(models.Model):
 
     def __str__(self):
         return '{} :: {}'.format(self.title, self.author)   # POST라는 객체를 표현될 때 어떻게 표현될 것인지
+
+    def get_absolute_url(self):
+        return '/blog/{}/'.format(self.pk)
