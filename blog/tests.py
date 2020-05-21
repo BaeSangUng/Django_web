@@ -59,6 +59,11 @@ class TestView(TestCase):
         self.assertNotIn('게시물 없음', body.text)
         self.assertIn(post_new.title, body.text)
 
+        # read more buttton Test
+        post_new_read_more_btn = body.find('a', id='read-more-post-{}'.format(post_new.pk))
+        print(post_new_read_more_btn['href'])
+        self.assertEqual(post_new_read_more_btn['href'], post_new.get_absolute_url())
+
     def test_post_detail(self):
         post_new = create_post(
             title='The First Post',
@@ -79,3 +84,10 @@ class TestView(TestCase):
         self.assertEqual(title.text, '{} - Blog'.format(post_new.title))
 
         self.check_navbar(soup)
+
+        body = soup.body
+        main_div = body.find('div', id='main_div')
+        self.assertIn(post_new.title, main_div.text)
+        self.assertIn(post_new.author.username, main_div.text)
+
+        self.assertIn(post_new.content, main_div.text)
